@@ -1,0 +1,1 @@
+cpu = 'DEC Alpha 21064-275.py'

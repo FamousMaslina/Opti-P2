@@ -1,0 +1,95 @@
+API Documentation (Written for Version 0.3)
+===========================================
+It is very Feature Rich.
+===========================================
+It contains these modules: (some might repeat, please bear with me... (or not even used))
+
+import os
+import random
+from os import name, system
+from importlib import import_module
+import playsound
+try:
+    from idgpu import gpu
+    module_name3 = gpu.replace('.py', '')
+    gpu_module = import_module(module_name3)
+    gpuC = True
+except ImportError:
+   gpuC = False
+   pass
+try:
+    from idmod import modem
+    module_name4 = modem.replace('.py', '')
+    md_module = import_module(module_name4)
+    mdC = True
+except ImportError as e:
+   mdC = False
+   pass
+from idcpu import cpu
+from idmb import mb
+from idhd import hd
+import time
+import os.path
+from configparser import ConfigParser
+import sys
+import platform
+import random
+from tabulate import tabulate
+from os import system, name
+from time import sleep
+import time
+import subprocess
+from colorama import init, Fore, Back, Style
+module_name = cpu.replace('.py', '')  # Remove the .py extension
+module_name2 = mb.replace('.py', '')
+cpu_module = import_module(module_name)
+mb_module = import_module(module_name2)
+module_name3 = hd.replace('.py', '')
+hd_module = import_module(module_name3)
+import op2v
+===========================================
+It has these functions:
+
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
+
+def cls():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
+
+def sleep_timeAppLoad(cFreq):
+
+  sleep_time = 45 / cpu_module.cFreq
+  return sleep_time
+
+def sleep_timeInAppLoad(cFreq):
+
+  sleep_time = 15 / cpu_module.cFreq
+  return sleep_time
+sleep_timeAppL = sleep_timeAppLoad(cpu_module.cFreq)
+sleep_timeIAppL = sleep_timeInAppLoad(cpu_module.cFreq)
+===========================================
+How to import the API:
+The best way in my opinion is by:
+import op2api as api
+===========================================
+How to use anything?
+Usually, api.clear(), api.cls() and so on.
+===========================================
+sleep_timeAppLoad(cFreq) Documentation:
+cFreq is the value found in any CPU file from the 'cpus' folder. It represents the frequency.
+API contains two of these, AppLoad(1), and InAppLoad(2).
+The math is basic:
+        -(1): 45/cFreq
+        -(2): 15/cFreq
+(1) it's used when opening a program. (2) it's used within the program.
+The variables to use them are: (make sure to add any custom import name. If you set one.)
+        - sleep_timeAppL = sleep_timeAppLoad(cpu_module.cFreq)
+        - sleep_timeIAppL = sleep_timeInAppLoad(cpu_module.cFreq)
+(cpu_module should not be modified at all!)
+The custom import name, is added before 'sleep_timeAppL/sleep_timeIAppL' and 'sleep_timeInAppLoad/sleep_timeAppLoad'

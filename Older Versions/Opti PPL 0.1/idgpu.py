@@ -1,0 +1,1 @@
+gpu = 'basiclaptop.py'

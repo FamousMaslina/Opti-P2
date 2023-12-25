@@ -1,0 +1,1 @@
+cpu = 'Cyrix Cx486SLC-25.py'

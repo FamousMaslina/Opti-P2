@@ -1,0 +1,9 @@
+gName = "S3 ViRGE"
+gSpeed = 55
+gSpeedS = "5 MHz"
+gps = 1
+gvs = 0
+grop = 1
+gVram = 2
+gbit = "8 Bits"
+gpu = True
