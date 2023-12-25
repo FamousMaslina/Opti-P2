@@ -1,4 +1,4 @@
-#Opti P2 - So-called OS made in Python. (Inspired by MS-DOS)
+Opti P2 - So-called OS made in Python. (Inspired by MS-DOS)
 
 Why?
 -it started with some old projects of mine. You can check them out in the older versions folder. (The oldest is Py OS)
