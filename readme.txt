@@ -1,7 +1,7 @@
-# Opti P2 - So-called OS made in python. (Inspired by MS-DOS)
 
+# Opti P2 - So-called OS made in python. (Inspired by MS-DOS)
 Why?
--it started with some old projects of mine. You can actually check them out in older versions folder. (The oldest is Py OS)
+-it started with some old projects of mine. You can check them out in the older versions folder. (The oldest is Py OS)
 
 Features (0.8.X):
 -Delete, create, edit, open files
@@ -17,4 +17,4 @@ Features (0.8.X):
 Instructions:
 -If you clone this repo, and go in the Opti P2 folder, you just have to run 'op2.py' and that's it.
 -If something happens, it will output the error. (Usually uninstalled modules.)
--If you want older versions, go in the Older Versions folder and explore every version you want (It also has all the readmes with the update logs!!)
+-If you want older versions, go into the Older Versions folder and explore every version you want (It also has all the readmes with the update logs!!)
