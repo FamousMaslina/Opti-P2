@@ -44,8 +44,8 @@ try:
 except ImportError:
    print("OP2V Not Found! Legacy Mode Enabled!")
    lega = True
-apiver = "0.5"
-apiverI = 0.6
+apiver = "0.5.1"
+apiverI = 0.7
 compver = "0.6"
 compver2 = "0.6 R2"
 compver3 = "0.6.1"
@@ -145,6 +145,18 @@ for file in files:
   total_size_in_kb += file_size_in_kb
 space = round(total_size_in_kb, 2)
 
+def errormes(title, text, opttext):
+  print()
+  linebr(45)
+  print(title)
+  linebr(45)
+  print()
+  print(text)
+  linebr2(45)
+  input(opttext)
+  linebr(45)
+  print()
+
 def apihelp():
    linebr(20)
    print("'api' - Check the version")
@@ -174,6 +186,7 @@ def interface():
         input("Press enter to return...")
       elif inter == "2":
         linebr(20)
+        print("THIS IS NOT AN UPDATED UPDATE LOG :)")
         print("Added Update Tool for OP2 (available for 0.8.5 and up)")
         input("Press enter to return...")
       elif inter == "3":

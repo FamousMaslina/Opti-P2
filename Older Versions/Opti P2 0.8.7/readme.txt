@@ -1,4 +1,4 @@
-Opti P2 - an "OS" made in Python. (written for Version 0.8.6| API Version 0.5)
+Opti P2 - an "OS" made in Python. (written for Version 0.8.7| API Version 0.5.1)
 
 made for fun, of course, and it's pretty nice, tbh. It's inspired by MSDOS and so on.
 
@@ -49,7 +49,8 @@ All the custom apps, made by me are located in the
 
 UpdateLog:
 -----1A-----
--Added floppy drives
--Added ':a [FILENAME.EXTENSION]' command
------1B-----
--Updated 'help'
+-Added 'upkeep' command
+-Added custom error messages in the API
+-Fixed a critical bug regarding the floppy drive
+-Few tweaks with the old code
+

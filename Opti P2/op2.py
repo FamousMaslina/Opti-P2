@@ -41,6 +41,14 @@ except ImportError as e:
    mdC = False
    pass
 try:
+    from idflo import flo
+    module_name7 = flo.replace('.py', '')
+    flo_module = import_module(module_name7)
+    floC = True
+except ImportError:
+    floC = False
+    pass
+try:
     from bios import main
 except ImportError as e:
     while True:
@@ -64,8 +72,7 @@ module_name4 = key.replace('.py', '')
 key_module = import_module(module_name4)
 module_name5 = mon.replace('.py', '')
 mon_module = import_module(module_name5)
-module_name6 = flo.replace('.py', '')
-flo_module = import_module(module_name6)
+
 from op2api import *
 subprocess.run(["python", "op2api.py"])
 time.sleep(0.1)
@@ -112,7 +119,8 @@ clear()
 check()
 clear()
 
-
+tt = "System"
+ent = "Press enter to continue..."
 
 
 init(autoreset=True)
@@ -150,12 +158,14 @@ def configuration():
                 restart()
             else:
                 while True:
-                    print("Invalid command/ config file operation canceled.")
+                    txt1 = "Invalid command/ config file operation canceled."
+                    errormes(tt, txt1, ent)
                     time.sleep(2)
                     break          
     else:
         while True:
-            print(conf, "already present. Operation Canceled.")
+            txt1 =  "config already present. Operation Canceled."
+            errormes(tt, txt1, ent)
             time.sleep(2)
             break
 if ex == True:
@@ -189,7 +199,8 @@ def gpuinfo():
     time.sleep(sleep_timeIAppL)
     print()
     if gpuC == False:
-        print("GPU not detected. Run 'gpu' to detect.")
+        txt1 = "GPU not detected. Run 'gpu' to detect."
+        errormes(tt, txt1, ent)
     else:
         print("Current Installed GPU information:")
         print("  Graphic Processor - "+gpu_module.gName)
@@ -232,7 +243,8 @@ def internet():
         elif intern == 1:
             print("Already connected!")
     else:
-       print("No Modem Found. Run 'modem'")
+       txt1 = "No modem found. Run 'hardware'"
+       errormes(tt, txt1, ent)
 
 
 #def audio():
@@ -286,7 +298,19 @@ def virtualcommand():
         subprocess.run(["python", 'vcom.py'])
    except FileNotFoundError:
       pass   
+import os, shutil
 
+def upkeep():
+    shutil.rmtree("__pycache__")
+    os.remove("idcpu.py")
+    os.remove("idflo.py")
+    os.remove("idgpu.py")
+    os.remove("idhd.py")
+    os.remove("idkey.py")
+    os.remove("idmb.py")
+    os.remove("idmon.py")
+    os.remove("idsound.py")
+    print("Operation successful!")
 
 def help():
     time.sleep(sleep_timeAppL)
@@ -298,6 +322,7 @@ def help():
     print("  cls - Clear the screen")
     print("  configuration - Create the configuration file for OP2")
     print("  settings - Change settings from the configuration file")
+    print("  upkeep - Remove unused files.")
     print("  restart - Restart OP2")
     print("  exit - Exit the OS and the CMD")
     linebr2(20)
@@ -316,7 +341,6 @@ def help():
     print("  internet - Connect to the Internet")
     print("  virtualcommand - Emulate Py OS or Py OS 2 (if installed)")
     print("  omclient - Launch Opti Messager (if installed)")
-    print("  omserver - Start a server for Opti Messager (if installed)")
     print()
     print("'2' - Page 2")
     print("'exit' - exit help")
@@ -334,6 +358,7 @@ def help():
 
 def help2():
     time.sleep(sleep_timeAppL)
+    print("  omserver - Start a server for Opti Messager (if installed)")
     linebr2(20)
     print("Hardware Related:")
     print("  hardware - Identify GPUs, Modems, Sound Cards")
@@ -344,7 +369,7 @@ def help2():
     print("API Related:") 
     print("  api - Check API version")
     print("  api /? - Check API's help")
-    print("  api.update - Update the API")
+    print("  api.update - Update the API (TEMPORARILY DISABLED!)")
     linebr2(20)
     print("Advanced:") 
     print("  bios - Enter the BIOS")
@@ -402,7 +427,8 @@ def run_file(file_name):
         time.sleep(sleep_timeAppL)
         subprocess.run(["python", file_name])
     except FileNotFoundError:
-        print("File not found.")
+        txt1 = "File not found."
+        errormes(tt, txt1, ent)
     except subprocess.CalledProcessError as e:
         print("An error occurred:", e)
 
@@ -413,7 +439,8 @@ def accfloppy(file_name):
             time.sleep(sleep_timeAppL)
             subprocess.run(["python", prog])
         except FileNotFoundError:
-            print("File not found.")
+            txt1 = "File not found."
+            errormes(tt, txt1, ent)
         except subprocess.CalledProcessError as e:
             print("An error occurred:", e)
     else:
@@ -424,7 +451,8 @@ def del_file(file_name):
         time.sleep(sleep_timeAppL)
         os.remove(file_name)
     except FileNotFoundError:
-        print("File not found.")
+            txt1 = "File not found."
+            errormes(tt, txt1, ent)
 def nguess():
    try:
         subprocess.run(["python", 'nguess.py'])
@@ -463,7 +491,7 @@ def mainOS():
     while True:
         inp = input(f"O:/> ")
         inp = inp.lower()
-        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'configuration', 'virtualcommand', 'omclient', 'omserver'):
+        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'configuration', 'virtualcommand', 'omclient', 'omserver', 'upkeep'):
             eval(inp)()
         elif inp.startswith('run '):
             run_file(inp[4:])
@@ -591,7 +619,9 @@ def mainOS():
                     elif ch == "2":
                         break
         elif inp == "api.update":
-            if intern == 1:
+            if True:
+                print("Updates for API temporarily disabled.")
+            elif intern == 1:
                 print()
                 os.remove('op2api.py')
                 print("Contacting Server...")
