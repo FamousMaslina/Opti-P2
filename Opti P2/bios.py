@@ -213,8 +213,32 @@ init(autoreset=True)
 bios = 0
 enter = 'Press enter to continue...'
 osfileL = 'opticom.py'
-
-
+global passw
+passw = False
+global count
+count = 1
+def chkpass():
+  if count <= 6:
+    while True:
+      clear()
+      input("SYSTEM LOCKED! RESTART!") 
+  while count <= 5:
+    clear()
+    print(count, "attempts remianing.")
+    a = input("Enter BIOS password: ")
+    print()
+    if a == settings["pass"]:
+      clear()
+      passw = True
+      count = 0
+      break
+    else:
+      input("Password not correct! Press enter to try again!")
+      count = count + 1
+      passw = False
+  
+    
+       
 #from identifier import *
 
 def main():
@@ -226,7 +250,8 @@ def main():
         print("2 - Config File Configuration")
         print("3 - Legacy Compatibilty")
         print("4 - Change Settings")
-        print("5 - Exit")
+        print("5 - Unlock BIOS")
+        print("6 - Exit")
         print()
         print()
         print("====SYSTEM INFO====")
@@ -234,6 +259,17 @@ def main():
         print(cpu_module.cName, "running at", cpu_module.cFreqS+cpu_module.cFreqUnit)
         print(mb_module.mMemS)
         print(hd_module.hddnameS, hd_module.hddspaceS)
+        if bios == 0:
+           pass
+        else:
+          if settings["pass"] == "0":
+            print("BIOS Password: DISABLED")
+          else:
+             print("BIOS Password: ENABLED")
+        if passw == False:
+          print("Settings: LOCKED")
+        elif passw == True:
+           print("Settings: UNLOCKED")
         print(biosFN, "version", biosV)
         print()
         #if os.path.exists(osfile):
@@ -301,12 +337,14 @@ def main():
                     print(conf, "not found. Try using CFC.")
                     time.sleep(2.2)
                     break
-        elif main == "5":
+        elif main == "6":
             if os.path.exists(osfile):
                os.system("op2.py")
                exit()
             else:
                 exit()
+        elif main == "5":
+           chkpass()
         elif main == "3":
             if bios == 1:
                 config.read(conf)
