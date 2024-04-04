@@ -41,14 +41,6 @@ except ImportError as e:
    mdC = False
    pass
 try:
-    from idflo import flo
-    module_name7 = flo.replace('.py', '')
-    flo_module = import_module(module_name7)
-    floC = True
-except ImportError:
-    floC = False
-    pass
-try:
     from bios import main
 except ImportError as e:
     while True:
@@ -72,7 +64,8 @@ module_name4 = key.replace('.py', '')
 key_module = import_module(module_name4)
 module_name5 = mon.replace('.py', '')
 mon_module = import_module(module_name5)
-
+module_name6 = flo.replace('.py', '')
+flo_module = import_module(module_name6)
 from op2api import *
 subprocess.run(["python", "op2api.py"])
 time.sleep(0.1)
@@ -102,16 +95,8 @@ def find_python_files(directory):
       python_files.append(os.path.join(directory, file))
   return python_files
 
-if os.path.exists("op2.ini"):
-    pass
-else:
-    while True:
-        clear()
-        input("OP2.INI NOT FOUND! ENTER THE SETUP TO REPAIR!")
-config = ConfigParser()
-config.read("op2.ini")
-settings = config["user"]
-syst = config["sys"]
+
+    
 import op2v
 osName = "Opti P2"
 osVersion = op2v.op2VER
@@ -119,8 +104,7 @@ clear()
 check()
 clear()
 
-tt = "System"
-ent = "Press enter to continue..."
+
 
 
 init(autoreset=True)
@@ -132,7 +116,7 @@ def restart():
     time.sleep(sleep_timeAppL)
     os.system("op2.py")
     exit()
-
+config = ConfigParser()
 global ex
 ex = False
 if os.path.exists('op2.ini'):
@@ -149,8 +133,6 @@ def configuration():
             if bioscr == "y":
                 config.add_section('user')
                 config.set('user', 'computer_name', 'DEFAULT')
-                config.add_section('sys')
-                config.set('sys', 'path_label', 'O:')
                 with open("op2.ini", 'w') as configfile:
                     config.write(configfile)
                 print("Closing to apply changes. Created", conf)
@@ -158,14 +140,12 @@ def configuration():
                 restart()
             else:
                 while True:
-                    txt1 = "Invalid command/ config file operation canceled."
-                    errormes(tt, txt1, ent)
+                    print("Invalid command/ config file operation canceled.")
                     time.sleep(2)
                     break          
     else:
         while True:
-            txt1 =  "config already present. Operation Canceled."
-            errormes(tt, txt1, ent)
+            print(conf, "already present. Operation Canceled.")
             time.sleep(2)
             break
 if ex == True:
@@ -199,8 +179,7 @@ def gpuinfo():
     time.sleep(sleep_timeIAppL)
     print()
     if gpuC == False:
-        txt1 = "GPU not detected. Run 'gpu' to detect."
-        errormes(tt, txt1, ent)
+        print("GPU not detected. Run 'gpu' to detect.")
     else:
         print("Current Installed GPU information:")
         print("  Graphic Processor - "+gpu_module.gName)
@@ -243,8 +222,7 @@ def internet():
         elif intern == 1:
             print("Already connected!")
     else:
-       txt1 = "No modem found. Run 'hardware'"
-       errormes(tt, txt1, ent)
+       print("No Modem Found. Run 'modem'")
 
 
 #def audio():
@@ -298,19 +276,7 @@ def virtualcommand():
         subprocess.run(["python", 'vcom.py'])
    except FileNotFoundError:
       pass   
-import os, shutil
 
-def upkeep():
-    shutil.rmtree("__pycache__")
-    os.remove("idcpu.py")
-    os.remove("idflo.py")
-    os.remove("idgpu.py")
-    os.remove("idhd.py")
-    os.remove("idkey.py")
-    os.remove("idmb.py")
-    os.remove("idmon.py")
-    os.remove("idsound.py")
-    print("Operation successful!")
 
 def help():
     time.sleep(sleep_timeAppL)
@@ -322,7 +288,6 @@ def help():
     print("  cls - Clear the screen")
     print("  configuration - Create the configuration file for OP2")
     print("  settings - Change settings from the configuration file")
-    print("  upkeep - Remove unused files.")
     print("  restart - Restart OP2")
     print("  exit - Exit the OS and the CMD")
     linebr2(20)
@@ -341,23 +306,6 @@ def help():
     print("  internet - Connect to the Internet")
     print("  virtualcommand - Emulate Py OS or Py OS 2 (if installed)")
     print("  omclient - Launch Opti Messager (if installed)")
-    print()
-    print("'2' - Page 2")
-    print("'exit' - exit help")
-    hlp = input("> ")
-    hlp = hlp.lower()
-    if hlp == "exit":
-        print()
-        pass
-    elif hlp == "2":
-        clear()
-        help2()
-    else:
-        print()
-        pass
-
-def help2():
-    time.sleep(sleep_timeAppL)
     print("  omserver - Start a server for Opti Messager (if installed)")
     linebr2(20)
     print("Hardware Related:")
@@ -375,19 +323,6 @@ def help2():
     print("  bios - Enter the BIOS")
     linebr(20)
     print()
-    print("'1' - Page 1")
-    print("'exit' - exit help")
-    hlp = input("> ")
-    hlp = hlp.lower()
-    if hlp == "exit":
-        print()
-        pass
-    elif hlp == "1":
-        clear()
-        help()
-    else:
-        print()
-        pass
 
 def bios():
     time.sleep(sleep_timeAppL)
@@ -427,8 +362,7 @@ def run_file(file_name):
         time.sleep(sleep_timeAppL)
         subprocess.run(["python", file_name])
     except FileNotFoundError:
-        txt1 = "File not found."
-        errormes(tt, txt1, ent)
+        print("File not found.")
     except subprocess.CalledProcessError as e:
         print("An error occurred:", e)
 
@@ -439,8 +373,7 @@ def accfloppy(file_name):
             time.sleep(sleep_timeAppL)
             subprocess.run(["python", prog])
         except FileNotFoundError:
-            txt1 = "File not found."
-            errormes(tt, txt1, ent)
+            print("File not found.")
         except subprocess.CalledProcessError as e:
             print("An error occurred:", e)
     else:
@@ -451,8 +384,7 @@ def del_file(file_name):
         time.sleep(sleep_timeAppL)
         os.remove(file_name)
     except FileNotFoundError:
-            txt1 = "File not found."
-            errormes(tt, txt1, ent)
+        print("File not found.")
 def nguess():
    try:
         subprocess.run(["python", 'nguess.py'])
@@ -470,7 +402,7 @@ def calc():
   clear()
   print("Type '0000' to exit.")
   while True:
-    calci = input(format(syst["path_label"]))
+    calci = input("O:/int/> ")
     result = eval(calci)
     if result == 0000:
        clear()
@@ -491,7 +423,7 @@ def mainOS():
     while True:
         inp = input(f"O:/> ")
         inp = inp.lower()
-        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'configuration', 'virtualcommand', 'omclient', 'omserver', 'upkeep'):
+        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'configuration', 'virtualcommand', 'omclient', 'omserver'):
             eval(inp)()
         elif inp.startswith('run '):
             run_file(inp[4:])
@@ -591,17 +523,13 @@ def mainOS():
             linebr(20)
             print()
         elif inp == "var":
-           if settings['computer_name'] == "DEBUG_MODE":
-                print("osName", osName)
-                print("osVersion", osVersion)
-                print("config", config)
-                print("gpuC", gpuC)
-                print("intern", intern)
-                print("VERSTRING:", op2v.op2VERSTRING)
-                print("sond", sond)
-                print("inp", inp)
-           #print("files", files)
-
+           print("osName", osName)
+           print("osVersion", osVersion)
+           print("config", config)
+           print("gpuC", gpuC)
+           print("intern", intern)
+           print("VERSTRING:", op2v.op2VERSTRING)
+           print("sond", sond)
         elif inp == "settings":
             if ex == True:
                 cls()
