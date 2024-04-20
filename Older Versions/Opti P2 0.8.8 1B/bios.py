@@ -194,7 +194,7 @@ def sleep_time2(cFreq):
   return sleep_time
 lbreak = '===================='
 biosN = 'LBIOS'
-biosV = "0.7.1"
+biosV = "0.7"
 biosFN = 'LegacyBIOS'
 osfile = 'op2.py'
 def clear():
@@ -399,13 +399,8 @@ try:
 except ImportError:
   pass
   opexist = False
-  try:
-    import op2setup
-    setup = True
-  except ImportError:
-    setup = False
-
-
+  import op2setup
+  setup = True
 if os.path.exists(conf):
     bios = 1
     print(conf, "found. Continuing...")

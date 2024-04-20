@@ -44,7 +44,10 @@ All the custom apps, made by me are located in the
 (Make sure to copy op2api.py in the cwd if the OP2 Version you're running is lower than 0.6)
 
 UpdateLog:
------1C-----
--Fixed BIOS bug
+-----1B-----
+-Added extra check for the BIOS. (if op2 is not found and op2setup not found -> BIOS main menu
+				  if op2 is found and op2setup is not found -> continues normally
+                                  if op2setup is found and op2 is not found -> opens the setup)
+(This BIOS update is recommended, but it's just an option.)
 
 

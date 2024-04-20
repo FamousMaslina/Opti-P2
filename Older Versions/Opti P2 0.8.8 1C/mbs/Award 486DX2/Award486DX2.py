@@ -1,0 +1,12 @@
+mName = "Award 486DX/2"
+mMem = 8192
+mMemS = "8192 KB"
+spCpus = "386"
+onboardGPU = True
+reqBIOS = 'bios.py'
+gName = ""
+gFreq = ""
+gMem = ""
+ioaoooss = True
+bcode = "awd486"
+mFreqUnit = "MHz"
