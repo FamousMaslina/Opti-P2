@@ -44,8 +44,8 @@ try:
 except ImportError:
    print("OP2V Not Found! Legacy Mode Enabled!")
    lega = True
-apiver = "0.5.1"
-apiverI = 0.7
+apiver = "0.6"
+apiverI = 0.8
 compver = "0.6"
 compver2 = "0.6 R2"
 compver3 = "0.6.1"
@@ -126,9 +126,6 @@ def check():
         exit()
 
 
-
-
-
 import os
 
 def get_file_size_in_kb(file_path):
@@ -157,38 +154,61 @@ def errormes(title, text, opttext):
   linebr(45)
   print()
 
-def apihelp():
-   linebr(20)
-   print("'api' - Check the version")
-   print("'api.interface' - Access the API's Interface")
-   linebr(20)
 
-def interface():
-   clear()
-   while True:
-      clear()
-      print("API version", apiver)
-      print("OP2 version", op2v.op2VER)
-      linebr(20)
-      print("1 - Test features")
-      print("2 - Update Log")
-      print("3 - Exit")
-      linebr(20)
-      inter = input("> ")
-      if inter == "1":
-        linebr(20)
-        print("1 - CWD -", cwd)
-        print("2 - Total Used Space (in KB)-", space)
-        print("3 - Separation Line (5)")
-        linebr(5)
-        print("  - Separation Line (3)")
-        linebr(3)
-        input("Press enter to return...")
-      elif inter == "2":
-        linebr(20)
-        print("THIS IS NOT AN UPDATED UPDATE LOG :)")
-        print("Added Update Tool for OP2 (available for 0.8.5 and up)")
-        input("Press enter to return...")
-      elif inter == "3":
-         clear()
-         return
+def setupprog(progamname, customdirs, customdirspath, checkapi, checkcpu, checksize, checkcpureq, checksizereq, apireq):
+  if customdirs == False or None:
+    customdirspath = None
+    pass
+  elif checkapi == False or None:
+    apireq = None
+    pass
+  elif checkcpu == False or None:
+    checkcpureq = None
+    pass
+  elif checksize == False or None:
+    checksizereq = None
+    pass
+  print("Welcome to", progamname, "setup!")#default text 
+  linebr(40)
+  print("This setup program will help you install", progamname, "on your system. Press enter to continue...")
+  input("")
+  clear()
+  if checkapi == True:
+      if apiverI < apireq:
+        print("Your API version is lower than expected! The expected version is {apireq} and you have {apiverI}")
+        input("Press enter to exit!")
+        exit()
+      else:
+        pass
+  else:
+    pass
+  if checkcpu == True:
+    if cpu_module.cFreq < checkcpureq:
+      print("Your CPU, does not meet the minnimum requirments!")
+      print("Expected Atleast {cpureq} Idendtified:", cpu_module.cFreqS)
+      input("Press enter to exit...")
+      exit()
+    else:
+      pass
+  else:
+    pass
+  if checksize == True:
+    if hd_module.hddspace < checksizereq:
+      print("You don't have enough space to install the program! Expected atleast {checksizereq}!")
+      input("Press enter to exit...")
+      exit()
+    else:
+      pass
+  else:
+    pass
+  clear()
+  print("Starting to install", progamname)
+  print()
+  if customdirs == True:
+  #create a folder in the cwd with the name being customdirspath (variable)
+    os.makedirs(customdirspath, exist_ok=True)
+    pass
+  else:
+    pass
+  #now starts the downloading process... best way is through git, or any http request to download required files.
+  #you should aslo handle by yourself the files needed to be copied to the custom dir! (sorry...) 
