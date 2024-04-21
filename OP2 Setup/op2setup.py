@@ -227,8 +227,14 @@ def setup():
 
 
 def learnm():
-    print("Learning More About Setup")
-
+    mark("Learning more")
+    print('This will install OP2 and its core components.')
+    print("(encryp, hardwiz, nguess, op2, op2api, write)")
+    print("After the installation, you can easily delete the setup files directly from OP2.")
+    print()
+    input("Press enter to return to the main menu...")
+    mainOS()
+    
 def mainOS():
     #if os.path.exists("setup.ini"): too much work. it dose not work :(
         #config.read("setup.ini")
