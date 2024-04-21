@@ -16,6 +16,7 @@ Features (0.8.X):
 
 Instructions:
 -If you clone this repo, and go in the Opti P2 folder, you just have to run 'op2.py' and that's it.
+-Or you could run the setup program. (beware that you'll still need the BIOS and required hardware files installed!)
 -If something happens, it will output the error. (Usually uninstalled modules.)
 -If you want older versions, go in the Older Versions folder and explore every version you want (It also has all the readmes with the update logs!!)
 -If you want custom hardware, make sure to delete the file of the hardware that you want, and replace it with your desired one, from the folders availabe.
