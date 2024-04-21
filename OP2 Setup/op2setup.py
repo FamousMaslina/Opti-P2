@@ -129,7 +129,60 @@ def restarts():
     #print(result.stdout)
     #result = subprocess.run(["pip install ConfigParser"], capture_output=True, text=True)
     #print(result.stdout)
-            
+    u1 = "https://raw.githubusercontent.com/FamousMaslina/Opti-P2/main/Opti%20P2/op2v.py"
+    response = requests.get(u1)
+    #print("op2.py...")
+    #print()
+    with open("op2v.py", "wb") as f:
+        f.write(response.content)
+        f.close()
+    import op2v
+    print("Found version:", op2v.op2VER, op2v.op2VERSTRING)
+    u1 = "https://raw.githubusercontent.com/FamousMaslina/Opti-P2/main/Opti%20P2/op2.py"
+    response = requests.get(u1)
+    print("op2.py...")
+    print()
+    with open("op2.py", "wb") as f:
+        f.write(response.content)
+        f.close()
+    u1 = "https://raw.githubusercontent.com/FamousMaslina/Opti-P2/main/Opti%20P2/encryp.py"
+    response = requests.get(u1)
+    print("encryp.py...")
+    print()
+    with open("encryp.py", "wb") as f:
+        f.write(response.content)
+        f.close()
+    u1 = "https://raw.githubusercontent.com/FamousMaslina/Opti-P2/main/Opti%20P2/hardwiz.py"
+    response = requests.get(u1)
+    print("hardwiz.py...")
+    print()
+    with open("hardwiz.py", "wb") as f:
+        f.write(response.content)
+        f.close()
+    u1 = "https://raw.githubusercontent.com/FamousMaslina/Opti-P2/main/Opti%20P2/nguess.py"
+    response = requests.get(u1)
+    print("nguess.py...")
+    print()
+    with open("nguess.py", "wb") as f:
+        f.write(response.content)
+        f.close()
+    u1 = "https://raw.githubusercontent.com/FamousMaslina/Opti-P2/main/Opti%20P2/op2api.py"
+    response = requests.get(u1)
+    print("op2api.py...")
+    print()
+    with open("op2api.py", "wb") as f:
+        f.write(response.content)
+        f.close()
+    u1 = "https://raw.githubusercontent.com/FamousMaslina/Opti-P2/main/Opti%20P2/write.py"
+    response = requests.get(u1)
+    print("write.py...")
+    print()
+    with open("write.py", "wb") as f:
+        f.write(response.content)
+        f.close()
+    print("Done!")
+    input("Press enter to exit...")
+    exit()
 
 def setup():
     clear()
