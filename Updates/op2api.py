@@ -79,7 +79,7 @@ from time import sleep
 import time
 import subprocess
 from colorama import init, Fore, Back, Style
-module_name = cpu.replace('.py', '')  # Remove the .py extension
+module_name = cpu.replace('.py', '') 
 module_name2 = mb.replace('.py', '')
 cpu_module = import_module(module_name)
 mb_module = import_module(module_name2)
@@ -88,12 +88,12 @@ mb_module = import_module(module_name2)
 
 def sleep_timeAppLoad(cFreq):
 
-  sleep_time = 45 / cpu_module.cFreq
+  sleep_time = 13 / cpu_module.cFreq #was 45(og), 35, 25, 15
   return sleep_time
 
 def sleep_timeInAppLoad(cFreq):
 
-  sleep_time = 15 / cpu_module.cFreq
+  sleep_time = 2 / cpu_module.cFreq #was 15(og), 5
   return sleep_time
 
 def sleep_timecustom(sec, cFreq):
