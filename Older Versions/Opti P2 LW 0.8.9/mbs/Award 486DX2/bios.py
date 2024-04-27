@@ -134,45 +134,17 @@ def main5():
         file_id = mon
         with open("idmon.py", "w") as f:
           f.write("mon = '{}'\n".format(file_id))
-
-def find_variables9(file_path):
-  """Finds all variables in the specified Python file."""
-  variables = []
-  with open(file_path, "r") as f:
-    for line in f:
-      match = re.search(r"(kkeyb)", line)
-      if match:
-        variables.append(match.group(1))
-  return variables
-
-def main9():
-  """The main function."""
-  directory = os.getcwd()
-  python_files = find_python_files(directory)
-  for file in python_files:
-    if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables9(file)
-      if variables:
-        print(file, variables)
-        key = os.path.basename(file)
-        print(key)
-        file_id = key
-        with open("idkey.py", "w") as f:
-          f.write("key = '{}'".format(file_id))
-
 main3()
 main2()
 main4()
 main5()
-main9()
 time.sleep(0.2)
 from idcpu import cpu
 from idmb import mb
 from idhd import hd
 from idmon import mon
-from idkey import key
 from importlib import import_module
-
+import op2
 module_name = cpu.replace('.py', '')  # Remove the .py extension
 module_name2 = mb.replace('.py', '')
 cpu_module = import_module(module_name)
@@ -181,8 +153,6 @@ module_name3 = hd.replace('.py', '')
 hd_module = import_module(module_name3)
 module_name5 = mon.replace('.py', '')
 mon_module = import_module(module_name5)
-module_name4 = key.replace('.py', '')
-key_module = import_module(module_name4)
 clear()
 sup = ["awd486"] 
 if mb_module.bcode == "awd486":
@@ -196,16 +166,16 @@ else:
     input("")
 def sleep_time(cFreq):
 
-  sleep_time = 15 / cpu_module.cFreq
+  sleep_time = 55 / cpu_module.cFreq
   return sleep_time
 
 def sleep_time2(cFreq):
 
-  sleep_time = 2 / cpu_module.cFreq
+  sleep_time = 5 / cpu_module.cFreq
   return sleep_time
 lbreak = '===================='
 biosN = 'ABIOS'
-biosV = "0.2 Rev A"
+biosV = "0.1 Rev B"
 biosFN = 'Award Modular BIOS'
 osfile = 'op2.py'
 config = ConfigParser()
@@ -404,22 +374,6 @@ print("---------------------")
 time.sleep(6)
 clear()
 time.sleep(1)
-
-opexist = False
-setup = False
-try:
-  import op2
-  opexist = True
-  setup = False
-except ImportError:
-  pass
-  opexist = False
-  try:
-    import op2setup
-    setup = True
-  except ImportError:
-    setup = False
-
 
 if os.path.exists(conf):
     bios = 1

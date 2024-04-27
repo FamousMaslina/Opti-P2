@@ -55,6 +55,36 @@ def main3():
         with open("idcpu.py", "w") as f:
           f.write("cpu = '{}'".format(file_id))
 
+
+
+
+def find_variables9(file_path):
+  """Finds all variables in the specified Python file."""
+  variables = []
+  with open(file_path, "r") as f:
+    for line in f:
+      match = re.search(r"(kkeyb)", line)
+      if match:
+        variables.append(match.group(1))
+  return variables
+
+def main9():
+  """The main function."""
+  directory = os.getcwd()
+  python_files = find_python_files(directory)
+  for file in python_files:
+    if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "hardwiz.py":
+      variables = find_variables9(file)
+      if variables:
+        print(file, variables)
+        key = os.path.basename(file)
+        print(key)
+        file_id = key
+        with open("idkey.py", "w") as f:
+          f.write("key = '{}'".format(file_id))
+
+
+
 def find_variables2(file_path):
   """Finds all variables in the specified Python file."""
   variables = []
@@ -104,11 +134,6 @@ def main4():
         file_id = hd
         with open("idhd.py", "w") as f:
           f.write("hd = '{}'\n".format(file_id))
-def clear():
-    if name == 'nt':
-        _ = system('cls')
-    else:
-        _ = system('clear')
 
 def find_variables5(file_path):
   """Finds all variables in the specified Python file."""
@@ -135,42 +160,17 @@ def main5():
         with open("idmon.py", "w") as f:
           f.write("mon = '{}'\n".format(file_id))
 
-def find_variables9(file_path):
-  """Finds all variables in the specified Python file."""
-  variables = []
-  with open(file_path, "r") as f:
-    for line in f:
-      match = re.search(r"(kkeyb)", line)
-      if match:
-        variables.append(match.group(1))
-  return variables
-
-def main9():
-  """The main function."""
-  directory = os.getcwd()
-  python_files = find_python_files(directory)
-  for file in python_files:
-    if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables9(file)
-      if variables:
-        print(file, variables)
-        key = os.path.basename(file)
-        print(key)
-        file_id = key
-        with open("idkey.py", "w") as f:
-          f.write("key = '{}'".format(file_id))
-
 main3()
 main2()
 main4()
-main5()
 main9()
+main5()
 time.sleep(0.2)
 from idcpu import cpu
 from idmb import mb
 from idhd import hd
-from idmon import mon
 from idkey import key
+from idmon import mon
 from importlib import import_module
 
 module_name = cpu.replace('.py', '')  # Remove the .py extension
@@ -179,41 +179,35 @@ cpu_module = import_module(module_name)
 mb_module = import_module(module_name2)
 module_name3 = hd.replace('.py', '')
 hd_module = import_module(module_name3)
-module_name5 = mon.replace('.py', '')
-mon_module = import_module(module_name5)
 module_name4 = key.replace('.py', '')
 key_module = import_module(module_name4)
-clear()
-sup = ["awd486"] 
-if mb_module.bcode == "awd486":
-  pass
-else: 
-  while True:
-    print("BIOS NOT COMPATIBLE WITH MOTHERBOARD!")
-    print("EXPECTED:")
-    for i in sup:
-      print(sup)
-    input("")
+module_name5 = mon.replace('.py', '')
+mon_module = import_module(module_name5)
 def sleep_time(cFreq):
 
-  sleep_time = 15 / cpu_module.cFreq
+  sleep_time = 15 / cpu_module.cFreq #was 55(og), 30, 15
   return sleep_time
 
 def sleep_time2(cFreq):
 
-  sleep_time = 2 / cpu_module.cFreq
+  sleep_time = 2 / cpu_module.cFreq #was 5(og), 3
   return sleep_time
 lbreak = '===================='
-biosN = 'ABIOS'
-biosV = "0.2 Rev A"
-biosFN = 'Award Modular BIOS'
+biosN = 'LBIOS'
+biosV = "0.7.1"
+biosFN = 'LegacyBIOS'
 osfile = 'op2.py'
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
 config = ConfigParser()
-try:
-    config.read("bios.ini")
-    settings = config["bios"]
-except FileNotFoundError:
-    pass
+if os.path.exists('bios.ini'):
+  config.read("bios.ini")
+  settings = config["bios"]
+else:
+   pass
 conf = 'bios.ini'
 init(autoreset=True)
 bios = 0
@@ -375,36 +369,27 @@ try:
 except ImportError:
     pass
 clear()
-print("Award Modular BIOS", biosV, ",An energy star ally")
 print(cpu_module.cFreqS+cpu_module.cFreqUnit, "Processor")
+print(mb_module.mName, mb_module.mMem, "KB")
 print()
 
-#print(biosFN, biosV, "loading...")
+print(biosFN, biosV, "loading...")
 
 #print(c286, c2862, cpuDef)
-print("Detected memory:", mb_module.mMem, "KB")
-
-time.sleep(3)
+time.sleep(sleep_time)
 clear()
-print("Award Software, Inc.")
-print("System Configuration")
-print("---------------------")
-print("CPU:", cpu_module.cName)
-print("Co-Processor: Installed")
-print("CPU Clock:", cpu_module.cFreqS+cpu_module.cFreqUnit)
-print("---------------------")
-print("Base Memory:", mb_module.mMemS)
-print("---------------------")
-print("Diskette Drive A: None")
-print("Pri. Master Disk:", hd_module.hddspace, hd_module.hddnameS)
-print("---------------------")
-print("Display Type:", mon_module.monitorName)
-print("---------------------")
-
-time.sleep(6)
-clear()
-time.sleep(1)
-
+memcheck = 1
+if os.path.exists('bios.ini'):
+  if settings["mem_check"] == "1":
+      while memcheck < mb_module.mMem:
+          print(biosFN, biosV, "loading...")
+          print("Detected memory:", mb_module.mMem, "KB")
+          print(memcheck, "OK")
+          time.sleep(sleep_time2)
+          memcheck = memcheck + 100
+          clear()
+  else:
+      pass
 opexist = False
 setup = False
 try:
@@ -423,15 +408,29 @@ except ImportError:
 
 if os.path.exists(conf):
     bios = 1
-    #print(conf, "found. Continuing...")
+    print(conf, "found. Continuing...")
     time.sleep(sleep_time)
-    op2.mainOS()
+    if opexist == True:
+      op2.mainOS()
+    elif setup == True:
+      op2setup.mainOS()
+    else:
+      print("OP2 not found!")
+      time.sleep(3)
+      main()
 else:
     clear()
-    #print(conf, "not found. Continuing with basic settings...")
+    print(conf, "not found. Continuing with basic settings...")
     bios = 0
     time.sleep(1.5)
-    op2.mainOS()
+    if opexist == True:
+      op2.mainOS()
+    elif setup == True:
+      op2setup.mainOS()
+    else:
+      print("OP2 not found!")
+      time.sleep(3)
+      main()
     #if os.path.exists(osfile):
         #exec(open(osfile).read())
     #else:
