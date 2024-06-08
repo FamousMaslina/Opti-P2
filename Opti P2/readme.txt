@@ -49,6 +49,10 @@ UpdateLog:
 -Added 'autos' in the configuration file (basically enable autostart or not)
 -Added 'date' and 'hour' command
 
+-----1B-----
+-Fixed CMD bug (yes)
+-Experimenting with something special...
+
 (WOAAAH)
 
 

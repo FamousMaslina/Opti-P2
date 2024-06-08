@@ -16,6 +16,9 @@ except ImportError:
    pass
 
 
+
+
+
 try:
     from idsound import sound
     module_name6 = sound.replace('.py', '')
@@ -398,7 +401,7 @@ def help():
     print("  info - Display information about the OS")
     print("  cls - Clear the screen")
     print("  configuration - Create the configuration file for OP2")
-    print("  confighelp - See the configuration commands\entries")
+    print("  confighelp - See the configuration commands or entries")
     print("  settings - Change settings from the configuration file")
     print("  upkeep - Remove unused files.")
     print("  restart - Restart OP2")
@@ -607,13 +610,20 @@ if syst['autos'] == "1":
     autos()
 else:
     pass
+
+def gen():
+    randomints()
+
+def gensys():
+    randomsyspass()
+
 def mainOS():
     clear()
     nameO()
     while True:
         inp = input(f"O:/> ")
         inp = inp.lower()
-        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'configuration', 'virtualcommand', 'omclient', 'omserver', 'upkeep', 'confighelp', 'remids', 'date', 'hour'):
+        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'configuration', 'virtualcommand', 'omclient', 'omserver', 'upkeep', 'confighelp', 'remids', 'date', 'hour','gen', 'gensys'):
             eval(inp)()
         elif inp.startswith('run '):
             run_file(inp[4:])
