@@ -33,7 +33,7 @@ Inspired by MS-DOS
 	* (You can see some examples of apps from the 'Custom Apps' folder or from the root dir of OP2. (for example: 'hardwiz.py' or 'nguess.py')
 	### (BIG DISCLAIMER! Custom apps are mostly compatible with the version 0.6.2 and UP!!! You can bypass this by not using any keywords like 'cpu, mb, etc')
 
--Hardware:
-	-The easiest way to add hardware is to copy and paste an existing hardware file and modify it.
-	(OP2 has cpus, floppies, gpus, hdds, keyboards, mbs, modems, soundcards and monitors (0.8.6))
-	(BIOS is a pain to create. It changes everytime I add a new type of hardware, and I do not recomend it. However, you can try it...)
+* Hardware:
+	* The easiest way to add hardware is to copy and paste an existing hardware file and modify it.
+	* (OP2 has cpus, floppies, gpus, hdds, keyboards, mbs, modems, soundcards and monitors (0.8.6))
+	* (BIOS is a pain to create. It changes everytime I add a new type of hardware, and I do not recomend it. However, you can try it...)
