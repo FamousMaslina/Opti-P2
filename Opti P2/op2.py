@@ -131,30 +131,137 @@ def find_python_files(directory):
     if file.endswith(".py"):
       python_files.append(os.path.join(directory, file))
   return python_files
+
+
+# Define the configuration file name
+config_file = 'op2.ini'
+
+# Initialize the ConfigParser
 config = ConfigParser()
-conf = 'op2.ini'
-if os.path.exists("op2.ini"):
-    pass
+
+# Function to generate a random password
+def generate_password(length=12):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+# Function to handle user inputs
+def handle_user_input():
+    custom_section_name = input("Enter a custom section name: ")
+    if custom_section_name.lower() in ['user', 'sys']:
+        print(f"Error: '{custom_section_name}' is a reserved section name and cannot be used.")
+        return None, None
+    else:
+        user_password = input(f"Enter a password for the '{custom_section_name}' account: ")
+        return custom_section_name, user_password
+
+# Function to clear the screen (assuming it's a console application)
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+# Function to handle the name (placeholder for whatever nameO does)
+def nameO():
+    print("Welcome to the system.")
+
+# Check if the configuration file exists
+if os.path.exists(config_file):
+    config.read(config_file)
 else:
-    clear()
-    input("OP2.INI NOT FOUND! Press enter to create new one...")
+    # Create a new configuration file if it does not exist
+    input("OP2.INI NOT FOUND! Press enter to create a new one...")
     config.add_section('user')
     config.set('user', 'computer_name', 'DEFAULT')
     config.add_section('sys')
     config.set('sys', 'remids', '0')
     config.set('sys', 'chkfile', '0')
     config.set('sys', 'autos', '1')
-    with open("op2.ini", 'w') as configfile:
+    config.set('sys', 'password', generate_password())
+    config.set('sys', 'users', '0')
+    
+    with open(config_file, 'w') as configfile:
         config.write(configfile)
-        print("Closing to apply changes. Created", conf)
+        print(f"Closing to apply changes. Created {config_file}")
         time.sleep(3.5)
-        #input("Press enter to restart...")
-        #restart()
-        pass
+    
+    # Reload the configuration after creating
+    config.read(config_file)
 
-config.read("op2.ini")
-settings = config["user"]
-syst = config["sys"]
+# Ensure that the sections 'user' and 'sys' exist
+if 'user' not in config:
+    config.add_section('user')
+    config.set('user', 'computer_name', 'DEFAULT')
+
+if 'sys' not in config:
+    config.add_section('sys')
+    config.set('sys', 'remids', '0')
+    config.set('sys', 'chkfile', '0')
+    config.set('sys', 'autos', '1')
+    config.set('sys', 'password', generate_password())
+    config.set('sys', 'users', '0')
+
+def users():
+    if syst['users'] == "0":
+        pass
+    else:
+        custom_section_name, user_password = handle_user_input()
+        if custom_section_name and user_password:
+            if custom_section_name not in config:
+                config.add_section(custom_section_name)
+                config.set(custom_section_name, 'password', user_password)
+                print(f"Section '{custom_section_name}' with password added successfully.")
+            else:
+                print(f"Section '{custom_section_name}' already exists.")
+
+
+    with open(config_file, 'w') as configfile:
+        config.write(configfile)
+
+def check_custom_users():
+    custom_users = [section for section in config.sections() if section not in ['user', 'sys']]
+    
+    if not custom_users:
+        print()
+        print("No custom user made - Using Guest Account. Run 'users'.")
+        print()
+        return "Guest"
+    elif len(custom_users) == 1:
+        username = custom_users[0]
+        password = config.get(username, 'password')
+        linebr(45)
+        entered_password = input(f"Enter password for '{username}': ")
+        print()
+        if entered_password == password:
+            #print(f"Welcome, {username}!")
+            return username
+        else:
+            print("Incorrect password. Using Guest Account.")
+            print()
+            return "Guest"
+    else:
+        linebr(45)
+        username = input("Enter your username: ")
+        if username in custom_users:
+            password = config.get(username, 'password')
+            entered_password = input(f"Enter password for '{username}': ")
+            print()
+            if entered_password == password:
+                #print(f"Welcome, {username}!")
+                return username
+            else:
+                print("Incorrect password. Using Guest Account.")
+                print()
+                return "Guest"
+        else:
+            print("Username not found. Using Guest Account.")
+            print()
+            return "Guest"
+
+
+settings = config['user']
+syst = config['sys']
+
+#print("Configuration settings have been updated.")
+#print(f"SYS password: {config.get('sys', 'password')}")
 import op2v
 osName = "Opti P2"
 osVersion = op2v.op2VER
@@ -216,40 +323,7 @@ if os.path.exists('op2.ini'):
     ex = True
 else:
     ex = False
-def configuration():
-    conf = 'op2.ini'
-    if ex == False:
-        while True:
-            print(conf, "not found. Create new one? Y/N ")
-            bioscr = input("")
-            bioscr = bioscr.lower()
-            if bioscr == "y":
-                config.add_section('user')
-                config.set('user', 'computer_name', 'DEFAULT')
-                config.add_section('sys')
-                config.set('sys', 'remids', '0')
-                config.set('sys', 'chkfile', '0')
-                config.set('sys', 'autos', '1')
-                with open("op2.ini", 'w') as configfile:
-                    config.write(configfile)
-                print("Closing to apply changes. Created", conf)
-                time.sleep(3.5)
-                restart()
-            else:
-                while True:
-                    txt1 = "Invalid command/ config file operation canceled."
-                    #errormes(tt, txt1, ent)
-                    print(txt1)
-                    time.sleep(2)
-                    break          
-    else:
-        while True:
-            txt1 =  "config already present. Operation Canceled."
-            #errormes(tt, txt1, ent)
-            print(txt1)
 
-            time.sleep(2)
-            break
 if ex == True:
     try:
         config.read("op2.ini")
@@ -466,7 +540,10 @@ def help():
     print("  info - Display information about the OS")
     print("  cls - Clear the screen")
     print("  configuration - Create the configuration file for OP2")
-    print("  confighelp - See the configuration commands or entries")
+    if syst['users'] == "0":
+        print("  confighelp - See the configuration commands or entries")
+    else:
+        print("  users - Create new users.")
     print("  settings - Change settings from the configuration file")
     print("  upkeep - Remove unused files.")
     print("  restart - Restart OP2")
@@ -700,7 +777,45 @@ if syst['autos'] == "1":
     autos()
 else:
     pass
+def configuration():
+    conf = 'op2.ini'
+    if ex == False and syst['users'] == "0":
+        while True:
+            print(conf, "not found. Create new one? Y/N ")
+            bioscr = input("")
+            bioscr = bioscr.lower()
+            if bioscr == "y":
+                config.add_section('user')
+                config.set('user', 'computer_name', 'DEFAULT')
+                config.add_section('sys')
+                config.set('sys', 'remids', '0')
+                config.set('sys', 'chkfile', '0')
+                config.set('sys', 'autos', '1')
+                config.set('sys', 'password', generate_password())
+                config.set('sys', 'users', '0')
+                with open("op2.ini", 'w') as configfile:
+                    config.write(configfile)
+                print("Closing to apply changes. Created", conf)
+                time.sleep(3.5)
+                restart()
+            else:
+                while True:
+                    txt1 = "Invalid command/ config file operation canceled."
+                    #errormes(tt, txt1, ent)
+                    print(txt1)
+                    time.sleep(2)
+                    break
+    elif ex == False and syst['users'] == "1":
+        print("Run 'users' instead.")
+        pass          
+    else:
+        while True:
+            txt1 =  "config already present. Operation Canceled."
+            #errormes(tt, txt1, ent)
+            print(txt1)
 
+            time.sleep(2)
+            break
 def gen():
     randomints()
 
@@ -710,10 +825,15 @@ def gensys():
 def mainOS():
     clear()
     nameO()
+    if syst['users'] == "0":
+        pass
+        current_user = ""
+    else:
+        current_user = check_custom_users()
     while True:
-        inp = input(f"O:/> ")
+        inp = input(f"O:/{current_user}> ")
         inp = inp.lower()
-        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'configuration', 'virtualcommand', 'omclient', 'omserver', 'upkeep', 'confighelp', 'remids', 'date', 'hour','gen', 'gensys', 'reboot', 'shutdown'):
+        if inp in ('bios', 'info', 'cls', 'exit', 'help', 'gpu', 'restart', 'gpuinfo', 'modem', 'internet', 'api', 'encryp', 'nguess', 'write', 'calc', 'resethardware', 'hardware', 'users', 'virtualcommand', 'omclient', 'omserver', 'upkeep', 'confighelp', 'remids', 'date', 'hour','gen', 'gensys', 'reboot', 'shutdown', 'configuration'):
             eval(inp)()
         elif inp.startswith('run '):
             run_file(inp[4:])

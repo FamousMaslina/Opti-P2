@@ -1,4 +1,4 @@
-Opti P2 - an "OS" made in Python. (written for Version Pre0.9| API Version 0.6)
+Opti P2 - an "OS" made in Python. (written for Version 0.9| API Version 0.8)
 
 made for fun, of course, and it's pretty nice, tbh. It's inspired by MSDOS and so on.
 
@@ -38,29 +38,27 @@ All the custom apps, made by me are located in the
 
 UpdateLog:
 -----1A-----
--Removed 'api /?' and 'api.interface'
--Updated API
-	-Added 'setupprog' (New documentation coming in 0.9!)
--Added autostart.txt (runs programs on startup, also, dont include the extension. just the file name)
+-Fixes:
+	HW identifier bugs
+	BIOS
+	Spelling mistakes
+	Constistency
+	Execution Order
+	Fixed Win 10 CMD bug 
 
-(Floppy drive revamp in 0.9????!!!!1111 :shock:) no
------1B-----
--Changed loading speeds. (from 55 to 15, and so on.)
--Minimum requirments changed. (from 4.77MHz to 2.0MHz)
--Fixed a tiny spelling mistake.
+-Features Added:
+	Custom Users (you have to enable them in the op2.ini! Cannot change through OP2.)
+	Added alternative to 'exit' - 'shutdown'.
+	Added OEM Computers (Macintosh, IBM, etc. Basically, a single file containing all the information of HW, plus the PC's model name.)
+	Added a BIOS lock
+	Added 'autos' in the configuration file (basically enable autostart or not).
+	Added 'date' and 'hour' command.
+	Added Linux Support
+	Added alternative to 'restart' - 'reboot'
+	
+-Features Removed:
+	API: Removed 'errormes'
 
------R2 (2A\1C)-----
--Fixed A MILLION BUGS RELATED TO THE DAMN HW IDENTIFIER.
--Added alternative to 'exit' - 'shutdown'.
--Fixed BIOS (I REPEAT, DO NOT RUN THE CUSTOM AWARD BIOS!)
--Made it so hard disks aren't mandatory anymore. (floppy drives take its place).
--Added OEM Computers (Macintosh, IBM, etc. Basically, a single file containing all the information of HW, plus the PC's model name.).
--Added a BIOS lock ;).
-(Due to the size of the update and countless identifier fixes, this update will be released both as '0.8.9 R2' and '0.9 Pre-Release 4', because I don't know for how long or since
-what version those bugs existed. This update was supposed to be release of 0.9, but because of those bugs, I'll delay it even further. Don't worry, there will be some tiny extra
-features coming in 0.9, as well as updated READMEs and Guides, so lock in!)
-
-(WOAAAH)
 
 
 

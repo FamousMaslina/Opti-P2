@@ -4,7 +4,7 @@ Inspired by MS-DOS
 ## Why?
 -it started with some old projects of mine. You can actually check them out in older versions folder. (The oldest is Py OS)
 
-## Features (0.8.X):
+## Features (0.9.X):
 * Delete, create, edit, open files
 * Little games included
 * Message Server&Client
@@ -12,28 +12,79 @@ Inspired by MS-DOS
 * Custom API for certain functions used in OP2
 * Flexible Hardware (you can literally put a 186 mb with a 360cpu!)
 * Ability to update directly from OP2
-* Setup file (if you're too lazy. (Only for 0.8.3 for now...))
-* And many more in the OP2 main file!
+* Setup file (if you're too lazy.)
+* Ability to create custom users with password!
+* Easibly Moddable!
+* L-Linux... s-support... (ig)
 
 ## Instructions:
-* If you clone this repo, and go in the Opti P2 folder, you just have to run 'op2.py' and that's it.
-* Or you could run the setup program. (beware that you'll still need the BIOS and required hardware files installed!)
-* If something happens, it will output the error. (Usually uninstalled modules.)
-* If you want older versions, go in the Older Versions folder and explore every version you want (It also has all the readmes with the update logs!!)
-* If you want custom hardware, make sure to delete the file of the hardware that you want, and replace it with your desired one, from the folders availabe.
-  (CPU, MB, HDD, KEYBOARD, MONITORS are REQUIRED to run)
+### Windows:
+	* First of all, make sure you have Python install WITH PATH!
+	* The easiest way to run OP2 is to download it from the 'Releases' tab, and then extract the archive. In the root folder there will be a file called 'installlibs.bat' which will install all the needed modules. Then you run op2.py from the 'Opti P2' folder and you're done!
+	* If you want an older version (which is not in the releases tab), you will need to clone the repo and go in the 'Older Versions' Folder.
+
+### Linux:
+	* (ᗒᗣᗕ) I'LL UPDATE IT, I PROMISE!
+
+### Custom Hardware:
+	* OP2 requires you to have atleast the CPU, Motherboard, Floppy Drive, Monitor and Keyboard File. All the custom hardware is located in their respective folders. If you want to change/add new hardware, DELETE the old one, and copy the hardware file to where op2.py and bios.py is.
 
 ## Modding:
-* For apps:
-	* You just have to program it like normal. If you want to use the API, make sure to import it.
-	* Some functions:
-		* Custom wait time (based per cpu speed): time.sleep(sleep_timeAppL) (example usage)
-		* linebr(NUM) or linebr2(NUM): Separe text with this (linebr: = | linebr2: -)
-		* The API also has some imports, like time, os, random, etc. (everything that's used in OP2)
-	* (You can see some examples of apps from the 'Custom Apps' folder or from the root dir of OP2. (for example: 'hardwiz.py' or 'nguess.py')
-	### (BIG DISCLAIMER! Custom apps are mostly compatible with the version 0.6.2 and UP!!! You can bypass this by not using any keywords like 'cpu, mb, etc')
+* Creating apps for OP2 is completly normal. However, if you're lazy and you don't want to import modules, op2api is there for you.
+* op2api has those modules:
+	* import os
+	* import random
+	* from os import name, system
+	* from importlib import import_module
+	* import playsound
+	* import time
+	* import os.path
+	* from configparser import ConfigParser
+	* import sys
+	* import platform
+	* import random
+	* from tabulate import tabulate
+	* from os import system, name
+	* from time import sleep
+	* import time
+	* import subprocess
+	* from colorama import init, Fore, Back, Style
 
-* Hardware:
-	* The easiest way to add hardware is to copy and paste an existing hardware file and modify it.
-	* (OP2 has cpus, floppies, gpus, hdds, keyboards, mbs, modems, soundcards and monitors (0.8.6))
-	* (BIOS is a pain to create. It changes everytime I add a new type of hardware, and I do not recomend it. However, you can try it...)
+### Advanced:
+* If you want to create more realistic apps that takes advantage of OP2s functions, the api has plenty of them!
+* op2api has some variables, used to check if for example, there is certain HW installed or so on...
+		* cwd = Current Working Directory
+		* files = List files in the Current Working Directory
+		* apiverI = Used to check for the API version
+		* gpuC = Can be either True or False, if there is a GPU detected or not
+		* mdC = Can be either True or False, if there is a Modem detected or not
+		* souC = Can be either True or False, if there is a Sound Card detected or not
+		* cpu_module.VARIABLE = Used for accessing the CPU file
+		* mb_module.VARIABLE = Used for accessing the MB file
+
+* Before that, let's get comfortable with the CPU's variables.
+		* cFreq = Represents the Frequency of the CPU in MHz. Every CPU file has this value in NUMBERS!
+		* cFreqS = Is the same as cFreq, but in string.
+		* cFreqUnit = Its "MHz" in string.
+		* Those Variables are used with the prefix cpu_module.VARIABLE
+
+* Useful Functions:
+		* clear/cls = Clears the screen
+		* check = Check for the API version
+
+* App Intisialsation:
+		* sleep_timeAppLoad(cFreq) - The longest loading time, used for loading apps. (13seconds / cpu_module.cFreq)
+		* sleep_timeInAppLoad(cFreq) - The shortest loading time, used for loading stuff in the app (example from OP2: help). (2seconds / cpu_module.cFreq)
+		* sleep_timecustom(sec, cFreq) - Custom loading time (X seconds / cpu_module.cFreq) X Value must be a number!
+
+* App Installation:
+		* setupprog(progamname, customdirs, customdirspath, checkapi, checkcpu, checksize, checkcpureq, checksizereq, apireq)
+		* programname = The name of your program
+		* customdirs = If there are custom folders needed to be created (either True or False)
+		* customdirspath = The name of the folder
+		* checkapi = True or False
+		* checkcpu = True or False
+		* checksize = True or False
+		* checkcpureq = Number, indicating the min MHz of a cpu
+		* checksizereq = Number, indicating the min KB for the installation
+		* apireq = Number, indicating the min API ver
