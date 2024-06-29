@@ -19,15 +19,15 @@ Inspired by MS-DOS
 
 ## Instructions:
 ### Windows:
-	* First of all, make sure you have Python install WITH PATH!
-	* The easiest way to run OP2 is to download it from the 'Releases' tab, and then extract the archive. In the root folder there will be a file called 'installlibs.bat' which will install all the needed modules. Then you run op2.py from the 'Opti P2' folder and you're done!
-	* If you want an older version (which is not in the releases tab), you will need to clone the repo and go in the 'Older Versions' Folder.
+	First of all, make sure you have Python install WITH PATH!
+	The easiest way to run OP2 is to download it from the 'Releases' tab, and then extract the archive. In the root folder there will be a file called 'installlibs.bat' which will install all the needed modules. Then you run op2.py from the 'Opti P2' folder and you're done!
+	If you want an older version (which is not in the releases tab), you will need to clone the repo and go in the 'Older Versions' Folder.
 
 ### Linux:
-	* (ᗒᗣᗕ) I'LL UPDATE IT, I PROMISE!
+	(ᗒᗣᗕ) I'LL UPDATE IT, I PROMISE!
 
 ### Custom Hardware:
-	* OP2 requires you to have atleast the CPU, Motherboard, Floppy Drive, Monitor and Keyboard File. All the custom hardware is located in their respective folders. If you want to change/add new hardware, DELETE the old one, and copy the hardware file to where op2.py and bios.py is.
+	OP2 requires you to have atleast the CPU, Motherboard, Floppy Drive, Monitor and Keyboard File. All the custom hardware is located in their respective folders. If you want to change/add new hardware, DELETE the old one, and copy the hardware file to where op2.py and bios.py is.
 
 ## Modding:
 * Creating apps for OP2 is completly normal. However, if you're lazy and you don't want to import modules, op2api is there for you.
@@ -50,7 +50,7 @@ Inspired by MS-DOS
 	* import subprocess
 	* from colorama import init, Fore, Back, Style
 
-### Advanced:
+## Advanced Modding:
 * If you want to create more realistic apps that takes advantage of OP2s functions, the api has plenty of them!
 * op2api has some variables, used to check if for example, there is certain HW installed or so on...
 		* cwd = Current Working Directory
