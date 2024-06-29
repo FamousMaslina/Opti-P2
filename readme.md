@@ -50,41 +50,41 @@ Inspired by MS-DOS
 	* import subprocess
 	* from colorama import init, Fore, Back, Style
 
-## Advanced Modding:
+### Advanced Modding
 * If you want to create more realistic apps that takes advantage of OP2s functions, the api has plenty of them!
 * op2api has some variables, used to check if for example, there is certain HW installed or so on...
-		* cwd = Current Working Directory
-		* files = List files in the Current Working Directory
-		* apiverI = Used to check for the API version
-		* gpuC = Can be either True or False, if there is a GPU detected or not
-		* mdC = Can be either True or False, if there is a Modem detected or not
-		* souC = Can be either True or False, if there is a Sound Card detected or not
-		* cpu_module.VARIABLE = Used for accessing the CPU file
-		* mb_module.VARIABLE = Used for accessing the MB file
+	* cwd = Current Working Directory
+	* files = List files in the Current Working Directory
+	* apiverI = Used to check for the API version
+	* gpuC = Can be either True or False, if there is a GPU detected or not
+	* mdC = Can be either True or False, if there is a Modem detected or not
+	* souC = Can be either True or False, if there is a Sound Card detected or not
+	* cpu_module.VARIABLE = Used for accessing the CPU file
+	* mb_module.VARIABLE = Used for accessing the MB file
 
 * Before that, let's get comfortable with the CPU's variables.
-		* cFreq = Represents the Frequency of the CPU in MHz. Every CPU file has this value in NUMBERS!
-		* cFreqS = Is the same as cFreq, but in string.
-		* cFreqUnit = Its "MHz" in string.
-		* Those Variables are used with the prefix cpu_module.VARIABLE
+	* cFreq = Represents the Frequency of the CPU in MHz. Every CPU file has this value in NUMBERS!
+	* cFreqS = Is the same as cFreq, but in string.
+	* cFreqUnit = Its "MHz" in string.
+	* Those Variables are used with the prefix cpu_module.VARIABLE
 
 * Useful Functions:
-		* clear/cls = Clears the screen
-		* check = Check for the API version
+	* clear/cls = Clears the screen
+	* check = Check for the API version
 
 * App Intisialsation:
-		* sleep_timeAppLoad(cFreq) - The longest loading time, used for loading apps. (13seconds / cpu_module.cFreq)
-		* sleep_timeInAppLoad(cFreq) - The shortest loading time, used for loading stuff in the app (example from OP2: help). (2seconds / cpu_module.cFreq)
-		* sleep_timecustom(sec, cFreq) - Custom loading time (X seconds / cpu_module.cFreq) X Value must be a number!
+	* sleep_timeAppLoad(cFreq) - The longest loading time, used for loading apps. (13seconds / cpu_module.cFreq)
+	* sleep_timeInAppLoad(cFreq) - The shortest loading time, used for loading stuff in the app (example from OP2: help). (2seconds / cpu_module.cFreq)
+	* sleep_timecustom(sec, cFreq) - Custom loading time (X seconds / cpu_module.cFreq) X Value must be a number!
 
 * App Installation:
-		* setupprog(progamname, customdirs, customdirspath, checkapi, checkcpu, checksize, checkcpureq, checksizereq, apireq)
-		* programname = The name of your program
-		* customdirs = If there are custom folders needed to be created (either True or False)
-		* customdirspath = The name of the folder
-		* checkapi = True or False
-		* checkcpu = True or False
-		* checksize = True or False
-		* checkcpureq = Number, indicating the min MHz of a cpu
-		* checksizereq = Number, indicating the min KB for the installation
-		* apireq = Number, indicating the min API ver
+	* setupprog(progamname, customdirs, customdirspath, checkapi, checkcpu, checksize, checkcpureq, checksizereq, apireq)
+	* programname = The name of your program
+	* customdirs = If there are custom folders needed to be created (either True or False)
+	* customdirspath = The name of the folder
+	* checkapi = True or False
+	* checkcpu = True or False
+	* checksize = True or False
+	* checkcpureq = Number, indicating the min MHz of a cpu
+	* checksizereq = Number, indicating the min KB for the installation
+	* apireq = Number, indicating the min API ver
