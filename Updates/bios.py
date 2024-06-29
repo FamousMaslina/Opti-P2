@@ -12,6 +12,12 @@ from colorama import init, Fore, Back, Style
 import subprocess
 import playsound as plays
 import re
+
+if os.name == 'nt':  
+    python_executable = 'python'
+elif os.name == 'posix': 
+    python_executable = 'python3'
+
 try:
     os.remove("idcpu.py")
 except FileNotFoundError:
@@ -48,9 +54,9 @@ def main3():
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "hardwiz.py":
       variables = find_variables(file)
       if variables:
-        print(file, variables)
+        #print(file, variables)
         cpu = os.path.basename(file)
-        print(cpu)
+        #print(cpu)
         file_id = cpu
         with open("idcpu.py", "w") as f:
           f.write("cpu = '{}'".format(file_id))
@@ -76,9 +82,9 @@ def main9():
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "hardwiz.py":
       variables = find_variables9(file)
       if variables:
-        print(file, variables)
+        #print(file, variables)
         key = os.path.basename(file)
-        print(key)
+        #print(key)
         file_id = key
         with open("idkey.py", "w") as f:
           f.write("key = '{}'".format(file_id))
@@ -103,9 +109,9 @@ def main2():
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "hardwiz.py":
       variables = find_variables2(file)
       if variables:
-        print(file, variables)
+        #print(file, variables)
         mb = os.path.basename(file)
-        print(mb)
+        #print(mb)
         file_id = mb
         with open("idmb.py", "w") as f:
           f.write("mb = '{}'\n".format(file_id))
@@ -128,9 +134,9 @@ def main4():
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "idhd.py" and os.path.basename(file) != "hardwiz.py":
       variables = find_variables4(file)
       if variables:
-        print(file, variables)
+        #print(file, variables)
         hd = os.path.basename(file)
-        print(hd)
+        #print(hd)
         file_id = hd
         with open("idhd.py", "w") as f:
           f.write("hd = '{}'\n".format(file_id))
@@ -153,36 +159,75 @@ def main5():
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "idhd.py" and os.path.basename(file) != "hardwiz.py":
       variables = find_variables5(file)
       if variables:
-        print(file, variables)
+        #print(file, variables)
         mon = os.path.basename(file)
-        print(mon)
+        #print(mon)
         file_id = mon
         with open("idmon.py", "w") as f:
           f.write("mon = '{}'\n".format(file_id))
 
+def find_variables7(file_path):
+  """Finds all variables in the specified Python file."""
+  variables = []
+  with open(file_path, "r") as f:
+    for line in f:
+      match = re.search(r"(firin)", line)
+      if match:
+        variables.append(match.group(1))
+  return variables
+def mainF():
+  """The main function."""
+  directory = os.getcwd()
+  python_files = find_python_files(directory)
+  for file in python_files:
+    if os.path.basename(file) != "op2.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "op2api.py" and os.path.basename(file) != "hardwiz.py":
+      variables = find_variables7(file)
+      if variables:
+        #print(file, variables)
+        flo = os.path.basename(file)
+        #print(flo)
+        file_id = flo
+        with open("idflo.py", "w") as f:
+          f.write("flo = '{}'".format(file_id))
+          global floC
+          floC = True
 main3()
 main2()
 main4()
 main9()
 main5()
+mainF()
 time.sleep(0.2)
+global hdinstall
+hdinstall = False
 from idcpu import cpu
 from idmb import mb
-from idhd import hd
+try:
+  from idhd import hd
+  hdinstall = True
+except ImportError:
+   pass
+   hdinstall = False
 from idkey import key
 from idmon import mon
+from idflo import flo
 from importlib import import_module
 
 module_name = cpu.replace('.py', '')  # Remove the .py extension
 module_name2 = mb.replace('.py', '')
 cpu_module = import_module(module_name)
 mb_module = import_module(module_name2)
-module_name3 = hd.replace('.py', '')
-hd_module = import_module(module_name3)
+if hdinstall == False:
+   pass
+else:
+  module_name3 = hd.replace('.py', '')
+  hd_module = import_module(module_name3)
 module_name4 = key.replace('.py', '')
 key_module = import_module(module_name4)
 module_name5 = mon.replace('.py', '')
 mon_module = import_module(module_name5)
+module_name6 = flo.replace('.py', '')
+flo_module = import_module(module_name6)
 def sleep_time(cFreq):
 
   sleep_time = 15 / cpu_module.cFreq #was 55(og), 30, 15
@@ -194,7 +239,7 @@ def sleep_time2(cFreq):
   return sleep_time
 lbreak = '===================='
 biosN = 'LBIOS'
-biosV = "0.7.1"
+biosV = "0.9"
 biosFN = 'LegacyBIOS'
 osfile = 'op2.py'
 def clear():
@@ -233,7 +278,10 @@ def main():
         print(mb_module.mName)
         print(cpu_module.cName, "running at", cpu_module.cFreqS+cpu_module.cFreqUnit)
         print(mb_module.mMemS)
-        print(hd_module.hddnameS, hd_module.hddspaceS)
+        if hdinstall == False:
+          pass
+        else:
+          print(hd_module.hddnameS, hd_module.hddspaceS)
         print(biosFN, "version", biosV)
         print()
         #if os.path.exists(osfile):
@@ -303,7 +351,7 @@ def main():
                     break
         elif main == "5":
             if os.path.exists(osfile):
-               os.system("op2.py")
+               subprocess.run([python_executable, "op2.py"], check=True)
                exit()
             else:
                 exit()
@@ -364,10 +412,7 @@ def main():
 sleep_time = sleep_time(cpu_module.cFreq)
 sleep_time2 = sleep_time2(cpu_module.cFreq)
 clear()
-try:
-    subprocess.run(["python", "idgpu.py"])
-except ImportError:
-    pass
+
 clear()
 print(cpu_module.cFreqS+cpu_module.cFreqUnit, "Processor")
 print(mb_module.mName, mb_module.mMem, "KB")

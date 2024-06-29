@@ -67,9 +67,9 @@ try:
         print("Cannot load: Too low API version. Expected Version 0.5")
         input("")
         exit()
-    elif api.apiverI == 0.5 and api.lega == True:
+    elif api.apiverI >= 0.5 and api.lega == True:
         main()
-    elif api.apiverI == 0.5 or api.apiverI > 0.5 and op2v.op2VER == "0.6.1" or op2v.op2VER == "0.6" or op2v.op2VER == "0.6 R2" or op2v.op2VER == "0.5 R2" or op2v.op2VER == "0.5":
+    elif api.apiverI >= 0.5 or api.apiverI > 0.5 and op2v.op2VER == "0.6.1" or op2v.op2VER == "0.6" or op2v.op2VER == "0.6 R2" or op2v.op2VER == "0.5 R2" or op2v.op2VER == "0.5":
         main()
 except ImportError:
     print("API not found/ not working")

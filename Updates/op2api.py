@@ -53,7 +53,7 @@ compver4 = "0.5"
 compver5 = "0.5 R2"
 compver6 = "0.6.2"
 
-
+import string
 from idcpu import cpu
 from idmb import mb
 if lega == True:
@@ -211,4 +211,97 @@ def setupprog(progamname, customdirs, customdirspath, checkapi, checkcpu, checks
   else:
     pass
   #now starts the downloading process... best way is through git, or any http request to download required files.
-  #you should aslo handle by yourself the files needed to be copied to the custom dir! (sorry...) 
+  #you should aslo handle by yourself the files needed to be copied to the custom dir! (sorry...)
+def randomints():
+    length = int(input("Enter the length of the string: "))
+    #password = randomints()
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for i in range(length))
+
+    print(password)
+    print()
+    return password
+
+
+def randomsyspass():
+    length = int(input("Enter the length of the password: "))
+    
+    # Custom mappings for characters
+    sys = {
+        'A': 'asda321',
+        'B': 'qwe1234',
+        'C': 'zxc1234',
+        'D': 'poi0987',
+        'E': 'mnb9876',
+        'F': 'hndf13r4',
+        'G': 'klp4321',
+        'H': 'yhn7890',
+        'I': 'qaz8765',
+        'J': 'vbn6789',
+        'K': 'fgh6543',
+        'L': 'wsx7654',
+        'M': 'edc8765',
+        'N': 'ujm5432',
+        'O': 'ikl9876',
+        'P': 'rfv7654',
+        'Q': 'xed7654',
+        'R': 'cde4567',
+        'S': 'rfv7654',
+        'T': 'bhj8765',
+        'U': 'plm5432',
+        'V': 'wsx7654',
+        'W': 'ujm5432',
+        'X': 'cvb6789',
+        'Y': 'zxc1234',
+        'Z': 'qwe1234',
+        'a': 'asda321',
+        'b': 'qwe1234',
+        'c': 'zxc1234',
+        'd': 'poi0987',
+        'e': 'mnb9876',
+        'f': 'hndf13r4',
+        'g': 'klp4321',
+        'h': 'yhn7890',
+        'i': 'qaz8765',
+        'j': 'vbn6789',
+        'k': 'fgh6543',
+        'l': 'wsx7654',
+        'm': 'edc8765',
+        'n': 'ujm5432',
+        'o': 'ikl9876',
+        'p': 'rfv7654',
+        'q': 'xed7654',
+        'r': 'cde4567',
+        's': 'rfv7654',
+        't': 'bhj8765',
+        'u': 'plm5432',
+        'v': 'wsx7654',
+        'w': 'ujm5432',
+        'x': 'cvb6789',
+        'y': 'zxc1234',
+        'z': 'qwe1234',
+        '0': '12345',
+        '1': '54321',
+        '2': '67890',
+        '3': '09876',
+        '4': '13579',
+        '5': '24680',
+        '6': '11111',
+        '7': '22222',
+        '8': '33333',
+        '9': '44444',
+        '!': '@#$%^',
+        '@': '&*()_',
+        '#': '{}|:"',
+        '$': '<>?[]'
+    }
+
+    password = ''.join(sys.get(c, c) for c in ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(length)))
+
+    print("Encrypting...")
+    print()
+    print(password)
+    return password
+
+
+
