@@ -25,10 +25,13 @@ Inspired by MS-DOS
 	If you want an older version (which is not in the releases tab), you will need to clone the repo and go in the 'Older Versions' Folder.
 
 ### Linux:
-	(ᗒᗣᗕ) I'LL UPDATE IT, I PROMISE!
+	(ᗒᗣᗕ)
 
 ### Custom Hardware:
 	OP2 requires you to have atleast the CPU, Motherboard, Floppy Drive, Monitor and Keyboard File. All the custom hardware is located in their respective folders. If you want to change/add new hardware, DELETE the old one, and copy the hardware file to where op2.py and bios.py is.
+
+ ## Troubleshooting:
+ * Most issues come from modules that aren't installed. Make sure to run 'installibs.bat' to automatically install all modules. (Requires Python with PATH, Windows and 0.9.2 only.)
 
 ## Modding:
 * A new addition in 0.9.2 are extensions, which are designed to be run as commands in OP2. You have two examples in the 'extensions' folder in the same directory. (Again, only available in 0.9.2)
