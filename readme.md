@@ -15,6 +15,7 @@ Inspired by MS-DOS
 * Setup file (if you're too lazy.)
 * Ability to create custom users with password!
 * Easibly Moddable!
+* Custom Extensions (0.9.2)
 * L-Linux... s-support... (ig)
 
 ## Instructions:
@@ -24,12 +25,17 @@ Inspired by MS-DOS
 	If you want an older version (which is not in the releases tab), you will need to clone the repo and go in the 'Older Versions' Folder.
 
 ### Linux:
-	(ᗒᗣᗕ) I'LL UPDATE IT, I PROMISE!
+	(ᗒᗣᗕ)
 
 ### Custom Hardware:
 	OP2 requires you to have atleast the CPU, Motherboard, Floppy Drive, Monitor and Keyboard File. All the custom hardware is located in their respective folders. If you want to change/add new hardware, DELETE the old one, and copy the hardware file to where op2.py and bios.py is.
 
+ ## Troubleshooting:
+ * Most issues come from modules that aren't installed. Make sure to run 'installibs.bat' to automatically install all modules. (Requires Python with PATH, Windows and 0.9.2 only.)
+ * And if there are more bugs or any quirks you guys find, PLEASE, open an issue! I'm a bad tester myself.
+
 ## Modding:
+* A new addition in 0.9.2 are extensions, which are designed to be run as commands in OP2. You have two examples in the 'extensions' folder in the same directory. (Again, only available in 0.9.2)
 * Creating apps for OP2 is completly normal. However, if you're lazy and you don't want to import modules, op2api is there for you.
 * op2api has those modules:
 	* import os
