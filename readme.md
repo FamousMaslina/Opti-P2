@@ -32,6 +32,7 @@ Inspired by MS-DOS
 
  ## Troubleshooting:
  * Most issues come from modules that aren't installed. Make sure to run 'installibs.bat' to automatically install all modules. (Requires Python with PATH, Windows and 0.9.2 only.)
+ * And if there are more bugs or any quirks you guys find, PLEASE, open an issue! I'm a bad tester myself.
 
 ## Modding:
 * A new addition in 0.9.2 are extensions, which are designed to be run as commands in OP2. You have two examples in the 'extensions' folder in the same directory. (Again, only available in 0.9.2)
