@@ -77,7 +77,7 @@ from idflo import flo
 from op2api import *
 global intern
 intern = 0
-module_name = cpu.replace('.py', '')
+module_name = cpu.replace('.py', '')  # Remove the .py extension
 module_name2 = mb.replace('.py', '')
 cpu_module = import_module(module_name)
 mb_module = import_module(module_name2)
@@ -959,6 +959,7 @@ def manage_extensions():
     extensions_folder = 'extensions'
     extensions_info = []
 
+    # Gather info from each extension
     for filename in os.listdir(extensions_folder):
         if filename.endswith('.py'):
             module_name = filename[:-3]
@@ -968,6 +969,7 @@ def manage_extensions():
                 module_info['commands'] = ', '.join(module.commands.keys())
                 extensions_info.append(module_info)
     
+    # Display extensions
     print("\n=== Installed Extensions ===")
     for ext in extensions_info:
         print(f"----------------------------------------")
@@ -978,6 +980,7 @@ def manage_extensions():
         print(f"Commands   : {ext['commands']}")
         print(f"----------------------------------------")
 
+    # Manage extensions
     while True:
         action = input("\nEnter 'delete <extension>' or 'exit': ").strip().lower()
         if action == 'exit':
@@ -1028,6 +1031,7 @@ def mainOS():
                     print("Extensions Disabled.")
             else:
                 try:
+                    # Using a direct call approach to avoid double execution
                     if inp in default_commands:
                         command_function = eval(inp)
                         if callable(command_function):

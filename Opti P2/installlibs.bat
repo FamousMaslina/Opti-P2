@@ -5,4 +5,6 @@ pip install importlib
 pip install --upgrade wheel
 pip install playsound
 pip install requests
-pip install tensorboard
+pip install psutil
+pip install importlib
+pip install subprocess 

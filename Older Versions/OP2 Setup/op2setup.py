@@ -7,65 +7,6 @@ import subprocess
 from tensorboard import program
 global sond
 from importlib import import_module
-try:
-    from idgpu import gpu
-    import idgpu as shd
-    module_name3 = gpu.replace('.py', '')
-    gpu_module = import_module(module_name3)
-    gpuC = True
-except ImportError:
-   gpuC = False
-   pass
-
-
-try:
-    from idsound import sound
-    module_name6 = sound.replace('.py', '')
-    son_module = import_module(module_name6)
-    sond = True
-except ImportError as sounderror:
-    sond = False
-    pass
-try:
-    from idmod import modem
-    module_name4 = modem.replace('.py', '')
-    md_module = import_module(module_name4)
-    mdC = True
-except ImportError as e:
-   mdC = False
-   pass
-try:
-    from idflo import flo
-    module_name7 = flo.replace('.py', '')
-    flo_module = import_module(module_name7)
-    floC = True
-except ImportError:
-    floC = False
-    pass
-try:
-    from bios import main
-except ImportError as e:
-    while True:
-        print(e)
-        input("SYSTEM HALTED")
-
-from idcpu import cpu
-from idmb import mb
-from idhd import hd
-from idkey import key
-from idmon import mon
-global intern
-intern = 0
-module_name = cpu.replace('.py', '')  # Remove the .py extension
-module_name2 = mb.replace('.py', '')
-cpu_module = import_module(module_name)
-mb_module = import_module(module_name2)
-module_name3 = hd.replace('.py', '')
-hd_module = import_module(module_name3)
-module_name4 = key.replace('.py', '')
-key_module = import_module(module_name4)
-module_name5 = mon.replace('.py', '')
-mon_module = import_module(module_name5)
 from os import name, system
 
 #config = ConfigParser()
@@ -189,36 +130,9 @@ def setup():
     print("Opti P2 Setup")
     linebr(20)
     print("Checking your computer...")
-    freesp = hd_module.hddspace
-    if freesp <= 500:
-        print()
-        print("Your computer does not have enough space to install OP2.")
-        print("Press enter to exit...")
-        input("")
-        mainOS()
-    elif freesp < 2500:
-        print()
-        print("Your computer has enough space to install OP2, but beware that OP2 will warn you every startup about low storage.")
-        print("Press enter to continue...")
-        input("")
-    else:
-        pass
-    if cpu_module.cFreq < 4.7:
-        print("Your CPU does not meet the minnimum requirments!")
-        print("Expected Atleast 4.77Mhz! Idendtified:", cpu_module.cFreqS)
-        input("Press enter to exit...")
-        mainOS()
     time.sleep(3)
     mark("Allocating space")
     print()
-    print("Found", freesp, "KB of storage space")
-    print("On", hd_module.hddnameS)
-    print()
-    print("Continue on", hd_module.hddnameS, "?")
-    print("Press enter to continue...")
-    print("Press CTRL+C to exit and restart the setup program.")
-    print()
-    input("Enter choice: ")
     mark("Formating drive...")
     time.sleep(5)
     clear()
@@ -263,3 +177,4 @@ def mainOS():
         setup()
     elif chc == "1":
         learnm()
+mainOS()
