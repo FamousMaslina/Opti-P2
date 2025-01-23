@@ -813,7 +813,7 @@ def del_file(file_name):
             os.remove(file_name)
             print(f"File '{file_name}' deleted.")
         elif os.path.isdir(file_name):
-            os.rmdir(file_name)  # Only removes empty folders
+            os.rmdir(file_name)
             print(f"Folder '{file_name}' deleted.")
         else:
             print("File or folder not found.")
@@ -877,7 +877,7 @@ def autos():
 
     for line in lines:
         line = line.strip()
-        if line.startswith("#"):  # Skip comments
+        if line.startswith("#"):
             continue
 
         if line.startswith("import"):
@@ -1018,7 +1018,7 @@ def manage_extensions():
 
 def flush_ram():
     global available_memory
-    available_memory = mb_module.mMem  # Reset the available memory to its initial value
+    available_memory = mb_module.mMem
 
 def ram():
     print("\nRAM Available:", available_memory)
@@ -1061,7 +1061,7 @@ def touch(file_name):
     file_path = os.path.join(current_directory, file_name)
     try:
         with open(file_path, 'w') as f:
-            f.write("")  # Create an empty file
+            f.write("")
         print(f"File '{file_name}' created.")
     except Exception as e:
         print(f"Error creating file '{file_name}': {e}")
@@ -1083,7 +1083,7 @@ def mainOS():
     else:
         current_user = check_custom_users()
 
-    # Dictionary to track RAM usage for each command
+
     command_ram_usage = {
         'bios': 25, 'info': 5, 'cls': 1, 'exit': 0, 'help': 20, 'gpu': 0, 
         'restart': 40, 'gpuinfo': 60, 'modem': 40, 'internet': 100, 'api': 50, 
@@ -1101,7 +1101,7 @@ def mainOS():
         extensions = load_extensions()
 
     global available_memory
-    available_memory = mb_module.mMem  # Initial available memory in KB
+    available_memory = mb_module.mMem 
 
     while True:
         relative_path = os.path.relpath(current_directory, os.getcwd())
@@ -1149,7 +1149,7 @@ def mainOS():
             flush_ram()
             print(f"\nRAM flushed. Available memory reset to {available_memory} KB.\n")
         elif inp in extensions:
-            ram_required = random.randint(20, 100)  # Randomly assign RAM usage for extension commands
+            ram_required = random.randint(20, 100)
             if available_memory >= ram_required:
                 try:
                     available_memory -= ram_required

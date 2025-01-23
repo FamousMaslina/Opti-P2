@@ -2,25 +2,21 @@ import os
 import pygame
 from op2api import *
 
-# Check for the audio device
 if os.path.exists('idsound.py'):
     pass
 else:
     print("Audio Device not found!")
     exit()
 
-# Define compatible audio extensions
 AUDIO_EXTENSIONS = ['.mp3', '.wav', '.ogg', '.flac']
 
-# Initialize pygame mixer for audio control
 pygame.mixer.init()
 
-# Find audio files in the current directory
 def find_audio_files():
     files = os.listdir(os.getcwd())
     return [file for file in files if any(file.endswith(ext) for ext in AUDIO_EXTENSIONS)]
 
-# Define control functions
+
 def play_song(song):
     pygame.mixer.music.load(song)
     pygame.mixer.music.play()
@@ -38,7 +34,7 @@ def stop_song():
     pygame.mixer.music.stop()
     print("Stopped")
 
-# Stylish display function
+
 def display_screen(song_name, status="Stopped", show_menu=False, audio_files=None):
     clear()
     print("="*40)
@@ -63,14 +59,13 @@ def display_screen(song_name, status="Stopped", show_menu=False, audio_files=Non
             print(f"{idx + 1}. {song}")
         print("Choose a song number, or enter 'q' to quit")
 
-# Main playback loop
 def main():
     audio_files = find_audio_files()
     if not audio_files:
         display_screen("N/A", "No compatible audio files found")
         return
 
-    current_index = None  # Track the current song's index
+    current_index = None 
 
     while True:
         if current_index is None:
@@ -93,7 +88,6 @@ def main():
                 current_index = None
                 continue
 
-        # Control loop for current song
         command = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'n' for next song: ").lower()
         if command == 'p':
             pause_song()
@@ -104,7 +98,7 @@ def main():
         elif command == 's':
             stop_song()
             display_screen("N/A", "Stopped", show_menu=True, audio_files=audio_files)
-            current_index = None  # Reset to allow new song selection
+            current_index = None 
         elif command == 'n':
             stop_song()
             current_index = (current_index + 1) % len(audio_files)  # Move to the next song in the list
