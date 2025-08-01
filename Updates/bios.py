@@ -4,14 +4,34 @@ from configparser import ConfigParser
 import sys
 import platform
 import random
-from tabulate import tabulate
+
 from os import system, name
 from time import sleep
 import time
-from colorama import init, Fore, Back, Style
+#from colorama import init, Fore, Back, Style
 import subprocess
-import playsound as plays
+#import playsound as plays
 import re
+global playsM
+global coloramaM
+global tabulateM
+playsM = True
+coloramaM = True
+tabulateM = True
+try:
+  import playsound as plays
+except ImportError:
+  playsM = False
+try:
+  from colorama import init, Fore, Back, Style
+except ImportError:
+  coloramaM = False
+try:
+  from tabulate import tabulate
+except ImportError:
+   tabulateM = False
+
+
 
 if os.name == 'nt':  
     python_executable = 'python'
@@ -36,7 +56,7 @@ def find_python_files(directory):
       python_files.append(os.path.join(directory, file))
   return python_files
 
-def find_variables(file_path):
+def find_cpu(file_path):
   """Finds all variables in the specified Python file."""
   variables = []
   with open(file_path, "r") as f:
@@ -46,13 +66,13 @@ def find_variables(file_path):
         variables.append(match.group(1))
   return variables
 
-def main3():
+def main_cpu():
   """The main function."""
   directory = os.getcwd()
   python_files = find_python_files(directory)
   for file in python_files:
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables(file)
+      variables = find_cpu(file)
       if variables:
         #print(file, variables)
         cpu = os.path.basename(file)
@@ -64,7 +84,7 @@ def main3():
 
 
 
-def find_variables9(file_path):
+def find_keyboard(file_path):
   """Finds all variables in the specified Python file."""
   variables = []
   with open(file_path, "r") as f:
@@ -74,13 +94,13 @@ def find_variables9(file_path):
         variables.append(match.group(1))
   return variables
 
-def main9():
+def main_keyboard():
   """The main function."""
   directory = os.getcwd()
   python_files = find_python_files(directory)
   for file in python_files:
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables9(file)
+      variables = find_keyboard(file)
       if variables:
         #print(file, variables)
         key = os.path.basename(file)
@@ -91,7 +111,7 @@ def main9():
 
 
 
-def find_variables2(file_path):
+def find_mb(file_path):
   """Finds all variables in the specified Python file."""
   variables = []
   with open(file_path, "r") as f:
@@ -101,13 +121,13 @@ def find_variables2(file_path):
         variables.append(match.group(1))
   return variables
 
-def main2():
+def main_mb():
   """The main function."""
   directory = os.getcwd()
   python_files = find_python_files(directory)
   for file in python_files:
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables2(file)
+      variables = find_mb(file)
       if variables:
         #print(file, variables)
         mb = os.path.basename(file)
@@ -116,7 +136,7 @@ def main2():
         with open("idmb.py", "w") as f:
           f.write("mb = '{}'\n".format(file_id))
 
-def find_variables4(file_path):
+def find_hdd(file_path):
   """Finds all variables in the specified Python file."""
   variables = []
   with open(file_path, "r") as f:
@@ -126,13 +146,13 @@ def find_variables4(file_path):
         variables.append(match.group(1))
   return variables
 
-def main4():
+def main_hdd():
   """The main function."""
   directory = os.getcwd()
   python_files = find_python_files(directory)
   for file in python_files:
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "idhd.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables4(file)
+      variables = find_hdd(file)
       if variables:
         #print(file, variables)
         hd = os.path.basename(file)
@@ -141,7 +161,7 @@ def main4():
         with open("idhd.py", "w") as f:
           f.write("hd = '{}'\n".format(file_id))
 
-def find_variables5(file_path):
+def find_monitor(file_path):
   """Finds all variables in the specified Python file."""
   variables = []
   with open(file_path, "r") as f:
@@ -151,13 +171,13 @@ def find_variables5(file_path):
         variables.append(match.group(1))
   return variables
 
-def main5():
+def main_monitor():
   """The main function."""
   directory = os.getcwd()
   python_files = find_python_files(directory)
   for file in python_files:
     if os.path.basename(file) != "identifier.py" and os.path.basename(file) != "op2.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "idhd.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables5(file)
+      variables = find_monitor(file)
       if variables:
         #print(file, variables)
         mon = os.path.basename(file)
@@ -166,7 +186,7 @@ def main5():
         with open("idmon.py", "w") as f:
           f.write("mon = '{}'\n".format(file_id))
 
-def find_variables7(file_path):
+def find_floppy(file_path):
   """Finds all variables in the specified Python file."""
   variables = []
   with open(file_path, "r") as f:
@@ -175,13 +195,13 @@ def find_variables7(file_path):
       if match:
         variables.append(match.group(1))
   return variables
-def mainF():
+def main_Floppy():
   """The main function."""
   directory = os.getcwd()
   python_files = find_python_files(directory)
   for file in python_files:
     if os.path.basename(file) != "op2.py" and os.path.basename(file) != "idmb.py" and os.path.basename(file) != "bios.py" and os.path.basename(file) != "op2api.py" and os.path.basename(file) != "hardwiz.py":
-      variables = find_variables7(file)
+      variables = find_floppy(file)
       if variables:
         #print(file, variables)
         flo = os.path.basename(file)
@@ -191,12 +211,12 @@ def mainF():
           f.write("flo = '{}'".format(file_id))
           global floC
           floC = True
-main3()
-main2()
-main4()
-main9()
-main5()
-mainF()
+main_cpu()
+main_mb()
+main_keyboard()
+main_Floppy()
+main_hdd()
+main_monitor()
 time.sleep(0.2)
 global hdinstall
 hdinstall = False
@@ -239,7 +259,7 @@ def sleep_time2(cFreq):
   return sleep_time
 lbreak = '===================='
 biosN = 'LBIOS'
-biosV = "0.9"
+biosV = "0.9.1"
 biosFN = 'LegacyBIOS'
 osfile = 'op2.py'
 def clear():
@@ -265,7 +285,10 @@ osfileL = 'opticom.py'
 def main():
     while True:
         clear()
-        print(biosFN, "Menu")
+        if coloramaM == False:
+          print(biosFN, "Menu")
+        elif coloramaM == True:
+          print(Style.BRIGHT + Fore.GREEN + biosFN + " Menu" + Style.RESET_ALL)
         print(lbreak)
         print("1 - Read Settings")
         print("2 - Config File Configuration")
@@ -283,6 +306,12 @@ def main():
         else:
           print(hd_module.hddnameS, hd_module.hddspaceS)
         print(biosFN, "version", biosV)
+        if coloramaM == False:
+           print("coloramaM", False)
+        if tabulateM == False:
+           print("tabulateM", tabulateM)
+        if playsM == False:
+           print("playsound", playsM)
         print()
         #if os.path.exists(osfile):
             #from op2 import osN, ver
